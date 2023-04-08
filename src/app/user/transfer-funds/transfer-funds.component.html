@@ -1,0 +1,16 @@
+<form [formGroup]="transferForm" (ngSubmit)="onSubmit()">
+    <label>
+      From Account:
+      <input type="text" formControlName="fromAccount">
+    </label>
+    <label>
+      To Account:
+      <input type="text" formControlName="toAccount">
+    </label>
+    <label>
+      Amount:
+      <input type="number" formControlName="amount">
+    </label>
+    <button type="submit">Transfer Funds</button>
+  </form>
+  

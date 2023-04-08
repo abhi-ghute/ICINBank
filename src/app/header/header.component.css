@@ -1,0 +1,35 @@
+header {
+    background-color: #0a0a0a;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem;
+    color: #bcb9b9;
+  }
+  
+  .nav-link {
+    font-size: 1.2rem;
+    color: #e5e1e1;
+    text-transform: uppercase;
+  }
+  
+  .nav-link:hover {
+    color: #007bff;
+  }
+  
+  @media (max-width: 767px) {
+    .navbar-nav {
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      padding: 10px;
+    }
+  
+    .nav-link {
+      font-size: 1.5rem;
+      color: #333;
+      text-transform: uppercase;
+    }
+  }
+  

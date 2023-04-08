@@ -1,0 +1,12 @@
+<form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="reason">Reason:</label>
+      <input type="text" id="reason" formControlName="reason">
+    </div>
+    <div>
+      <label for="pages">Pages:</label>
+      <input type="number" id="pages" formControlName="pages">
+    </div>
+    <button type="submit">Submit</button>
+</form>
+  

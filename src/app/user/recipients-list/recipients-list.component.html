@@ -1,0 +1,17 @@
+<table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Account Number</th>
+        <th>Account Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let recipient of recipients">
+        <td>{{ recipient.name }}</td>
+        <td>{{ recipient.accountNumber }}</td>
+        <td>{{ recipient.accountType }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
