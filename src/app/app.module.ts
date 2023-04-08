@@ -18,6 +18,14 @@ import { TransferFundsComponent } from './user/transfer-funds/transfer-funds.com
 import { RecipientsListComponent } from './user/recipients-list/recipients-list.component';
 import { CheckBookRequestComponent } from './user/check-book-request/check-book-request.component';
 import { AuthorizeUserComponent } from './admin/authorize-user/authorize-user.component';
+import { GrantAccessComponent } from './admin/grant-access/grant-access.component';
+import { UserListComponent } from './admin/user-list/user-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ChequeBookRequestsComponent } from './admin/cheque-book-requests/cheque-book-requests.component';
+import { BlockUserComponent } from './admin/block-user/block-user.component';
 
 @NgModule({
   declarations: [
@@ -35,13 +43,21 @@ import { AuthorizeUserComponent } from './admin/authorize-user/authorize-user.co
     TransferFundsComponent,
     RecipientsListComponent,
     CheckBookRequestComponent,
-    AuthorizeUserComponent
+    AuthorizeUserComponent,
+    GrantAccessComponent,
+    UserListComponent,
+    ChequeBookRequestsComponent,
+    BlockUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
