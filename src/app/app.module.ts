@@ -26,6 +26,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ChequeBookRequestsComponent } from './admin/cheque-book-requests/cheque-book-requests.component';
 import { BlockUserComponent } from './admin/block-user/block-user.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +50,8 @@ import { BlockUserComponent } from './admin/block-user/block-user.component';
     GrantAccessComponent,
     UserListComponent,
     ChequeBookRequestsComponent,
-    BlockUserComponent
+    BlockUserComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,9 @@ import { BlockUserComponent } from './admin/block-user/block-user.component';
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

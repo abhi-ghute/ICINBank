@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-registation',
@@ -9,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegistationComponent {
   userForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private userService:UserService,private snackBar: MatSnackBar) {
     this.userForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -23,6 +25,22 @@ export class RegistationComponent {
   }
 
   onSubmit() {
-    console.log(this.userForm.value);
+   this.userService.createUser(this.userForm.value).subscribe(data=>{
+    if(data=="Success"){
+      this.userForm.reset();
+      this.snackBar.open('User created successfully..account details will be shared soon', 'Close', {
+        duration: 4000, 
+        verticalPosition: 'top',
+        horizontalPosition: 'right'
+      });
+      
+    }else{
+      this.snackBar.open('Error Occured please submit again', 'Close', {
+        duration: 4000, 
+        verticalPosition: 'top',
+        horizontalPosition: 'right'
+      });
+    }
+   });
   }
 }

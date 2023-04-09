@@ -5,17 +5,16 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-user-login',
-  templateUrl: './user-login.component.html',
-  styleUrls: ['./user-login.component.css']
+  selector: 'app-admin-login',
+  templateUrl: './admin-login.component.html',
+  styleUrls: ['./admin-login.component.css']
 })
-export class UserLoginComponent {
-
+export class AdminLoginComponent {
   loginForm: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder,private authService:AuthService,private snackBar: MatSnackBar,private router:Router) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      userName: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
@@ -25,7 +24,7 @@ export class UserLoginComponent {
   }
 
   onSubmit() {
-   this.authService.userLogin(this.loginForm.value).subscribe(data=>{
+   this.authService.adminLogin(this.loginForm.value).subscribe(data=>{
     this.snackBar.open('Successfully logged In', 'Close', {
       duration: 4000, 
       verticalPosition: 'top',

@@ -4,6 +4,7 @@ import { RegistationComponent } from './user/registation/registation.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { DepositComponent } from './user/deposit/deposit.component';
 import { UserListComponent } from './admin/user-list/user-list.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 
 const routes: Routes = [
   {path:'user',children:[
@@ -13,6 +14,7 @@ const routes: Routes = [
   ]},
   {path:'admin',children:[
     {path:'userList',component:UserListComponent},
+    {path:'login',component:AdminLoginComponent},
   ]}
 ];
 
