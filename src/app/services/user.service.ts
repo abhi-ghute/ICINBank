@@ -13,4 +13,8 @@ export class UserService {
   createUser(user:any):Observable<any>{
     return this.http.post(this.rootUrl+"create",user,{responseType:'text'});
   }
+
+  getAll():Observable<any>{
+    return this.http.get(this.rootUrl+"getAll");
+  }
 }

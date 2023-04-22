@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-grant-access',
@@ -7,11 +8,25 @@ import { Component } from '@angular/core';
 })
 export class GrantAccessComponent {
 
-  user:any;
+  @Output() accessGranted = new EventEmitter<any>();
+
+  @Input() user = {
+    actionEntity: {
+      transfer: false,
+      deposit: false,
+      withdrawal: false
+    }
+  };
+
+  constructor() {
+  }
+
+  close() {
+    this.accessGranted.emit(this.user);
+  }
 
   grantAccess() {
-    // Do something with the user object to grant access
-    console.log('Access granted!');
+    console.log("done");
+    this.accessGranted.emit(this.user);
   }
-  
 }

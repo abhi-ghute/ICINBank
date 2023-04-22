@@ -20,4 +20,24 @@ export class AuthService {
     return this.http.post(this.adminRootUrl+"login",login,{responseType:'text'});
   }
 
+  isAdmin():boolean{
+    let role = sessionStorage.getItem("role");
+    let user = sessionStorage.getItem("user");
+
+    if(role != '' && role != undefined && role != null  && user != '' && user != undefined && user != null){
+      return true;
+    }
+    return false;
+  }
+
+  isUser(){
+    let role = sessionStorage.getItem("role");
+    let user = sessionStorage.getItem("user");
+
+    if(role != '' && role != undefined && role != null  && user != '' && user != undefined && user != null){
+      return true;
+    }
+    return false;
+  }
+
 }

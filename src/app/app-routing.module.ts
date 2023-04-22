@@ -13,7 +13,7 @@ const routes: Routes = [
     {path:'deposit',component:DepositComponent},
   ]},
   {path:'admin',children:[
-    {path:'userList',component:UserListComponent},
+    {path:'users',component:UserListComponent},
     {path:'login',component:AdminLoginComponent},
   ]}
 ];

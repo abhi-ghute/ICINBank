@@ -1,16 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-admin-login',
   templateUrl: './admin-login.component.html',
   styleUrls: ['./admin-login.component.css']
 })
-export class AdminLoginComponent {
+export class AdminLoginComponent implements OnInit{
   loginForm: FormGroup = new FormGroup({});
+
 
   constructor(private fb: FormBuilder,private authService:AuthService,private snackBar: MatSnackBar,private router:Router) {
     this.loginForm = this.fb.group({
@@ -24,19 +26,16 @@ export class AdminLoginComponent {
   }
 
   onSubmit() {
-   this.authService.adminLogin(this.loginForm.value).subscribe(data=>{
-    this.snackBar.open('Successfully logged In', 'Close', {
-      duration: 4000, 
-      verticalPosition: 'top',
-      horizontalPosition: 'center'
-    });
-    this.router.navigate(['/user/transactions']);
-   },error => {
-    this.snackBar.open('Invalid Details..Please check the deatils and try again', 'Close', {
-      duration: 4000, 
-      verticalPosition: 'top',
-      horizontalPosition: 'center'
-    });
-      },);
+   this.authService.adminLogin(this.loginForm.value).subscribe({
+    next: data => {
+      sessionStorage.setItem("user",data);
+      sessionStorage.setItem("role","admin")
+      this.router.navigate(['/admin/users']);
+    },
+    error: error => {
+      console.log('Error:', error);
+    }
+  });
+
   }
 }
