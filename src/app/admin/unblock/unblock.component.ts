@@ -4,12 +4,11 @@ import { AdminService } from 'src/app/services/admin.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-authorize-user',
-  templateUrl: './authorize-user.component.html',
-  styleUrls: ['./authorize-user.component.css']
+  selector: 'app-unblock',
+  templateUrl: './unblock.component.html',
+  styleUrls: ['./unblock.component.css']
 })
-export class AuthorizeUserComponent implements OnInit{
-  filteredUser:any;
+export class UnblockComponent implements OnInit{
   userList:any;
   searchText:string='';
  
@@ -20,33 +19,8 @@ export class AuthorizeUserComponent implements OnInit{
       this.getUsers();
   }
 
-  popupVisible = false;
-
-  openPopup(id:string) {
-    this.filteredUser = this.userList.filter((user:any) => user.id === id)[0];
-    console.log(this.filteredUser);
-    this.popupVisible = true;
-  }
-
-  closePopup() {
-    this.popupVisible = false;
-  }
-
-  onAccessGranted(user:any) {
-    console.log(user);
-
-    for (let i = 0; i < this.userList.length; i++) {
-      if (this.userList[i].id === user.id) {
-        this.userList.splice(i, 1, user);
-        break;
-      }
-    }
-
-    this.popupVisible = false;
-  }
-
-  authorize(user:any){
-    this.adminService.authorize(user).subscribe({
+  Unblock(user:any){
+    this.adminService.unblock(user).subscribe({
       next: data => {
         console.log("Success");
         this.getUsers();
@@ -58,7 +32,7 @@ export class AuthorizeUserComponent implements OnInit{
   }
 
   getUsers(){
-    this.userService.getAll("Disabled").subscribe({
+    this.userService.getAll("Blocked").subscribe({
       next: data => {
         this.userList=data;
         console.log(this.userList);
@@ -68,6 +42,7 @@ export class AuthorizeUserComponent implements OnInit{
         console.log('Error:', error);
       }
     });
+    return this.userList;
   }
 
   Searchfilter(){
@@ -87,3 +62,5 @@ export class AuthorizeUserComponent implements OnInit{
     }
   }
 }
+
+

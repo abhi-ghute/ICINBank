@@ -1,20 +1,17 @@
-<form [formGroup]="depositForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="accountNumber">Account Number:</label>
-      <input type="text" id="accountNumber" formControlName="accountNumber">
-      <div *ngIf="depositForm.get('accountNumber')?.invalid && depositForm.get('accountNumber')?.touched">
-        Please enter a valid account number.
-      </div>
-    </div>
-    
-    <div>
-      <label for="depositAmount">Deposit Amount:</label>
-      <input type="number" id="depositAmount" formControlName="depositAmount">
-      <div *ngIf="depositForm.get('depositAmount')?.invalid && depositForm.get('depositAmount')?.touched">
-        Please enter a deposit amount greater than zero.
-      </div>
-    </div>
-    
-    <button type="submit" [disabled]="depositForm.invalid">Submit</button>
-  </form>
+<app-view-balance></app-view-balance>
+<form [formGroup]="depositForm" (ngSubmit)="onSubmit()" class="my-form">
+  <div class="form-group">
+    <label for="accountNumber">Account Number:</label>
+    <input type="text" id="accountNumber" formControlName="accountNumber" class="form-control">
+  </div>
   
+  <div class="form-group">
+    <label for="depositAmount">Deposit Amount:</label>
+    <input type="number" id="depositAmount" formControlName="depositAmount" class="form-control">
+    <div *ngIf="depositForm.get('depositAmount')?.invalid && depositForm.get('depositAmount')?.touched" class="text-danger">
+      Please enter a deposit amount greater than zero.
+    </div>
+  </div>
+  
+  <button type="submit" [disabled]="depositForm.invalid" class="btn btn-primary">Deposit</button>
+</form>

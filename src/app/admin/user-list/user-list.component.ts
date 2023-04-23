@@ -3,6 +3,7 @@ import { GrantAccessComponent } from '../grant-access/grant-access.component';
 import { MatDialog } from '@angular/material/dialog';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/services/user.service';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-user-list',
@@ -12,22 +13,13 @@ import { UserService } from 'src/app/services/user.service';
 export class UserListComponent implements OnInit{
   filteredUser:any;
   userList:any;
-  currentId:string='';
+  searchText:string='';
  
-  constructor(private modalService: NgbModal,private userService:UserService) {
+  constructor(private modalService: NgbModal,private userService:UserService,private adminService:AdminService) {
   }
 
   ngOnInit(): void {
-      this.userService.getAll().subscribe({
-        next: data => {
-          this.userList=data;
-          console.log(this.userList);
-          
-        },
-        error: error => {
-          console.log('Error:', error);
-        }
-      });
+      this.getUsers();
   }
 
   popupVisible = false;
@@ -43,8 +35,53 @@ export class UserListComponent implements OnInit{
   }
 
   onAccessGranted(user:any) {
-    console.log(user);
-    // Do something with the user object, such as updating it in the parent component's state
+
+    for (let i = 0; i < this.userList.length; i++) {
+      if (this.userList[i].id === user.id) {
+        this.userList.splice(i, 1, user);
+        break;
+      }
+    }
+
+    this.adminService.authorize(user).subscribe({
+      next: data => {
+        console.log("Success");
+        this.getUsers();
+      },
+      error: error => {
+        console.log('Error:', error);
+      }
+    });
+    
     this.popupVisible = false;
+  }
+  getUsers(){
+    this.userService.getAll("Activated").subscribe({
+      next: data => {
+        this.userList=data;
+        console.log(this.userList);
+        
+      },
+      error: error => {
+        console.log('Error:', error);
+      }
+    });
+  }
+
+  Searchfilter(){
+    console.log(this.searchText);
+    if(this.searchText =='' || this.searchText ==undefined || this.searchText==null){
+      this.getUsers();
+    }
+    else{
+      this.userService.getAll("Activated").subscribe({
+        next: data => {
+          this.userList = data.filter((user:any) => user.firstName.toLowerCase().includes(this.searchText.toLowerCase()) || user.lastName.toLowerCase().includes(this.searchText.toLowerCase()));   
+        },
+        error: error => {
+          console.log('Error:', error);
+        }
+      });
+    }
   }
 }

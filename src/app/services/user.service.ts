@@ -14,7 +14,11 @@ export class UserService {
     return this.http.post(this.rootUrl+"create",user,{responseType:'text'});
   }
 
-  getAll():Observable<any>{
-    return this.http.get(this.rootUrl+"getAll");
+  getAll(status:string):Observable<any>{
+    return this.http.get(this.rootUrl+"getAll?status="+status);
+  }
+
+  getUser(id:string):Observable<any>{
+    return this.http.get(this.rootUrl+"getUser?id="+id);
   }
 }

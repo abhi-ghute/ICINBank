@@ -1,3 +1,5 @@
+<input type="text" [(ngModel)]="searchText" (keyup)="Searchfilter()" class="form-control" style="width: 20%;" placeholder="Search...">
+<br>
 <table class="table table-stripped">
     <thead>
       <tr>
@@ -5,11 +7,10 @@
         <th>Last Name</th>
         <th>Email</th>
         <th>Mobile Number</th>
-        <th>Aadhar Number</th>
-        <th>Pan Card</th>
-        <th>Gender</th>
+        <th>accountNumber</th>
+        <th>accountType</th>
+        <th>accountBalance</th>
         <th>Actions</th>
-        <th>Status</th>
       </tr>
     </thead>
     <tbody>
@@ -18,15 +19,14 @@
         <td>{{u.lastName}}</td>
         <td>{{u.email}}</td>
         <td>{{u.mobileNo}}</td>
-        <td>{{u.aadharNo}}</td>
-        <td>{{u.panCard}}</td>
-        <td>{{u.gender}}</td>
+        <td>{{u.accountNumber}}</td>
+        <td>{{u.accountType}}</td>
+        <td>Rs. {{u.accountBalance}}</td>
         <td>
-            <button (click)="openPopup(u.id)">Open Popup</button>
+            <button (click)="openPopup(u.id)" class="btn btn-primary">Grant access</button>
             <app-grant-access *ngIf="popupVisible" (closed)="closePopup()"></app-grant-access>
             <app-grant-access *ngIf="popupVisible" [user]='filteredUser' (accessGranted)="onAccessGranted($event)"></app-grant-access>
         </td>
-        <td><button>{{u.status}}</button></td>
       </tr>
     </tbody>
   </table>

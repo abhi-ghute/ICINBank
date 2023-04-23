@@ -29,6 +29,7 @@ import { BlockUserComponent } from './admin/block-user/block-user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { UnblockComponent } from './admin/unblock/unblock.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
     UserListComponent,
     ChequeBookRequestsComponent,
     BlockUserComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    UnblockComponent
   ],
   imports: [
     BrowserModule,

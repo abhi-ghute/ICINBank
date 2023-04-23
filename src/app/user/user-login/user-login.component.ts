@@ -25,19 +25,48 @@ export class UserLoginComponent {
   }
 
   onSubmit() {
-   this.authService.userLogin(this.loginForm.value).subscribe(data=>{
-    this.snackBar.open('Successfully logged In', 'Close', {
-      duration: 4000, 
-      verticalPosition: 'top',
-      horizontalPosition: 'center'
-    });
-    this.router.navigate(['/user/transactions']);
-   },error => {
-    this.snackBar.open('Invalid Details..Please check the deatils and try again', 'Close', {
-      duration: 4000, 
-      verticalPosition: 'top',
-      horizontalPosition: 'center'
-    });
-      },);
+   this.authService.userLogin(this.loginForm.value).subscribe({
+    next: data => {
+      console.log(data);
+      if(data!="failure"){
+        if(data=='Blocked'){
+          this.snackBar.open('This account is blocked currently due the threat.. please contact bank managet to unblock', 'Close', {
+            duration: 6000, 
+            verticalPosition: 'top',
+            horizontalPosition: 'center'
+          });
+        }else if(data=='Disabled'){
+          this.snackBar.open('Please wait.. your bank account will be created once Adminstrator authorize it', 'Close', {
+            duration: 4000, 
+            verticalPosition: 'top',
+            horizontalPosition: 'center'
+          });
+        }else{
+          sessionStorage.setItem("user",data);
+          sessionStorage.setItem("role","user")
+          this.snackBar.open('Successfully logged In', 'Close', {
+            duration: 4000, 
+            verticalPosition: 'top',
+            horizontalPosition: 'center'
+          });
+          this.router.navigate(['/user/transactions']);
+        }
+        
+      }else{
+        this.snackBar.open('Wrong Crentials..Try again', 'Close', {
+          duration: 4000, 
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        });
+      }
+    },
+    error: error => {
+      this.snackBar.open('Wrong Crentials..Try again', 'Close', {
+        duration: 4000, 
+        verticalPosition: 'top',
+        horizontalPosition: 'center'
+      });
+    }
+  });
   }
 }

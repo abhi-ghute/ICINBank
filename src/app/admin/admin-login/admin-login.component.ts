@@ -28,9 +28,22 @@ export class AdminLoginComponent implements OnInit{
   onSubmit() {
    this.authService.adminLogin(this.loginForm.value).subscribe({
     next: data => {
-      sessionStorage.setItem("user",data);
-      sessionStorage.setItem("role","admin")
-      this.router.navigate(['/admin/users']);
+      if(data=="admin"){
+        sessionStorage.setItem("user",data);
+        sessionStorage.setItem("role","admin")
+        this.snackBar.open('Successfully logged In', 'Close', {
+          duration: 4000, 
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        });
+        this.router.navigate(['/admin/users']);
+      }else{
+        this.snackBar.open('Wrong Crentials..Try again', 'Close', {
+          duration: 4000, 
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        });
+      }
     },
     error: error => {
       console.log('Error:', error);

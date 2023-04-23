@@ -27,6 +27,18 @@
           <li *ngIf="!isLoggedIn" class="nav-item">
             <a class="nav-link" routerLink="/user/register">Sign up</a>
           </li>
+          <li *ngIf="!isLoggedIn" class="nav-item">
+            <a class="nav-link" routerLink="/admin/users">Sign up</a>
+          </li>
+          <li *ngIf="!isLoggedIn" class="nav-item">
+            <a class="nav-link" routerLink="/admin/block">Block</a>
+          </li>
+          <li *ngIf="!isLoggedIn" class="nav-item">
+            <a class="nav-link" routerLink="/admin/unblock">UnBlock</a>
+          </li>
+          <li *ngIf="!isLoggedIn" class="nav-item">
+            <a class="nav-link" routerLink="/admin/authorize">authorize</a>
+          </li>
           <li *ngIf="isLoggedIn" class="nav-item">
             <a class="nav-link" (click)="logout()">Logout</a>
           </li>

@@ -1,1 +1,28 @@
-<p>cheque-book-requests works!</p>
+<input type="text" [(ngModel)]="searchText" (keyup)="Searchfilter()" class="form-control" style="width: 20%;" placeholder="Search...">
+<br>
+<table class="table table-stripped">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Mobile Number</th>
+        <th>accountNumber</th>
+        <th>accountType</th>
+        <th>accountBalance</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let u of userList">
+        <td>{{u.firstName}}</td>
+        <td>{{u.lastName}}</td>
+        <td>{{u.email}}</td>
+        <td>{{u.mobileNo}}</td>
+        <td>{{u.accountNumber}}</td>
+        <td>{{u.accountType}}</td>
+        <td>Rs. {{u.accountBalance}}</td>
+        <td><button class="btn btn-danger" (click)="block(u)">Block</button></td>
+      </tr>
+    </tbody>
+  </table>

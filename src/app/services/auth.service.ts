@@ -40,4 +40,20 @@ export class AuthService {
     return false;
   }
 
+  getUser(){
+    let user = sessionStorage.getItem("user");
+    if(user != '' && user != undefined && user != null){
+      return user;
+    }
+    return "login";
+  }
+
+  getRole(){
+    let role = sessionStorage.getItem("role");
+    if(role != '' && role != undefined && role != null){
+      return role;
+    }
+    return "login";
+  }
+
 }

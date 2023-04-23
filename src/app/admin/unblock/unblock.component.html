@@ -10,8 +10,7 @@
         <th>accountNumber</th>
         <th>accountType</th>
         <th>accountBalance</th>
-        <th>Actions</th>
-        <th>Authorize</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -23,12 +22,7 @@
         <td>{{u.accountNumber}}</td>
         <td>{{u.accountType}}</td>
         <td>Rs. {{u.accountBalance}}</td>
-        <td>
-            <button (click)="openPopup(u.id)" class="btn btn-primary">Grant access</button>
-            <app-grant-access *ngIf="popupVisible" (closed)="closePopup()"></app-grant-access>
-            <app-grant-access *ngIf="popupVisible" [user]='filteredUser' (accessGranted)="onAccessGranted($event)"></app-grant-access>
-        </td>
-        <td><button class="btn btn-success" (click)="authorize(u)">Activate</button></td>
+        <td><button class="btn btn-success" (click)="Unblock(u)">Activate</button></td>
       </tr>
     </tbody>
   </table>
