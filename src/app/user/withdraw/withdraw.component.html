@@ -1,20 +1,22 @@
-<form [formGroup]="withdrawForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="accountNumber">Account Number:</label>
-      <input type="text" id="accountNumber" formControlName="accountNumber">
-      <div *ngIf="withdrawForm.get('accountNumber')?.invalid && withdrawForm.get('accountNumber')?.touched">
-        Please enter a valid account number.
-      </div>
+<app-view-balance></app-view-balance>
+<form [formGroup]="withdrawForm" class="form my-form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="accountNumber">Account Number:</label>
+    <input type="text" id="accountNumber" formControlName="accountNumber" class="form-control">
+    <div *ngIf="withdrawForm.get('accountNumber')?.invalid && withdrawForm.get('accountNumber')?.touched"
+         class="invalid-feedback">
+      Please enter a valid account number.
     </div>
-    
-    <div>
-      <label for="withdrawAmount">Withdraw Amount:</label>
-      <input type="number" id="withdrawAmount" formControlName="withdrawAmount">
-      <div *ngIf="withdrawForm.get('withdrawAmount')?.invalid && withdrawForm.get('withdrawAmount')?.touched">
-        Please enter a withdraw amount greater than zero.
-      </div>
-    </div>
+  </div>
 
-    <button type="submit" [disabled]="withdrawForm.invalid">Submit</button>
-  </form>
-  
+  <div class="form-group">
+    <label for="withdrawAmount">Withdraw Amount:</label>
+    <input type="number" id="withdrawAmount" formControlName="withdrawAmount" class="form-control">
+    <div *ngIf="withdrawForm.get('withdrawAmount')?.invalid && withdrawForm.get('withdrawAmount')?.touched"
+         class="invalid-feedback">
+      Please enter a withdraw amount greater than zero.
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="withdrawForm.invalid" class="btn btn-primary">Submit</button>
+</form>

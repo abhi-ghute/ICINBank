@@ -54,13 +54,16 @@ export class DepositComponent {
       primaryAccountNumber:this.user.accountNumber,
       amount:this.depositForm.value.depositAmount,
       refrenceNumber:referenceNumber,
-      desc:"Deposit"
+      description:"Deposit"
     }
   
     this.transactionService.deposit(transaction).subscribe({
       next:data=>{
         alert("Deposited Successfully...\n ref. no.:"+referenceNumber);
         this.getUser();
+        this.depositForm.reset();
+        this.depositForm.get('accountNumber')?.setValue(this.user.accountNumber);
+        window.location.reload();
       },
       error:error=>{
         console.log(error);

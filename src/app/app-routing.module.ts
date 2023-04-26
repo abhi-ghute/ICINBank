@@ -8,14 +8,15 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { BlockUserComponent } from './admin/block-user/block-user.component';
 import { UnblockComponent } from './admin/unblock/unblock.component';
 import { AuthorizeUserComponent } from './admin/authorize-user/authorize-user.component';
-import { ViewBalanceComponent } from './user/view-balance/view-balance.component';
 import { ViewTransactionsComponent } from './user/view-transactions/view-transactions.component';
+import { WithdrawComponent } from './user/withdraw/withdraw.component';
 
 const routes: Routes = [
   {path:'user',children:[
     {path:'register',component:RegistationComponent},
     {path:'login',component:UserLoginComponent},
     {path:'deposit',component:DepositComponent},
+    {path:'withdraw',component:WithdrawComponent},
     {path:'transactions',component:ViewTransactionsComponent},
   ]},
   {path:'admin',children:[
