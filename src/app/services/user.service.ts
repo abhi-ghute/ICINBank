@@ -21,4 +21,8 @@ export class UserService {
   getUser(id:string):Observable<any>{
     return this.http.get(this.rootUrl+"getUser?id="+id);
   }
+  
+  checkBookRequest(check:any):Observable<any>{
+    return this.http.post(this.rootUrl+"checkRequest?",check,{responseType:'text'});
+  }
 }

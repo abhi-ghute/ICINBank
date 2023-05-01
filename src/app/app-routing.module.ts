@@ -10,6 +10,8 @@ import { UnblockComponent } from './admin/unblock/unblock.component';
 import { AuthorizeUserComponent } from './admin/authorize-user/authorize-user.component';
 import { ViewTransactionsComponent } from './user/view-transactions/view-transactions.component';
 import { WithdrawComponent } from './user/withdraw/withdraw.component';
+import { TransferFundsComponent } from './user/transfer-funds/transfer-funds.component';
+import { CheckBookRequestComponent } from './user/check-book-request/check-book-request.component';
 
 const routes: Routes = [
   {path:'user',children:[
@@ -17,6 +19,8 @@ const routes: Routes = [
     {path:'login',component:UserLoginComponent},
     {path:'deposit',component:DepositComponent},
     {path:'withdraw',component:WithdrawComponent},
+    {path:'transfer',component:TransferFundsComponent},
+    {path:'checkbook',component:CheckBookRequestComponent},
     {path:'transactions',component:ViewTransactionsComponent},
   ]},
   {path:'admin',children:[

@@ -20,4 +20,8 @@ export class TransactionService {
   transfer(transaction:object):Observable<any>{
     return this.http.post(this.transactionRootUrl+"transfer",transaction,{responseType:'text'});
   }
+
+  getTransactions(uid:string):Observable<any>{
+    return this.http.get(this.transactionRootUrl+"getTransactions?uid="+uid);
+  }
 }

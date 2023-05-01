@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
   templateUrl: './withdraw.component.html',
   styleUrls: ['./withdraw.component.css']
 })
-export class WithdrawComponent {
+export class WithdrawComponent implements OnInit{
 
   user: any;
   withdrawForm: FormGroup = new FormGroup({});
@@ -63,7 +63,7 @@ export class WithdrawComponent {
         if(data=='lowBal'){
           alert("Low Balance... you can withdraw upto "+this.user.accountBalance);
         }else{
-          alert("Deposited Successfully...\n ref. no.:"+referenceNumber);
+          alert("Withdraw Successfully...\n ref. no.:"+referenceNumber);
           this.getUser();
           this.withdrawForm.reset();
           this.withdrawForm.get('accountNumber')?.setValue(this.user.accountNumber);

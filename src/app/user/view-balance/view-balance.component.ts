@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './view-balance.component.html',
   styleUrls: ['./view-balance.component.css']
 })
-export class ViewBalanceComponent {
+export class ViewBalanceComponent implements OnInit{
   user:any;
 
   constructor(private authService:AuthService,private router:Router,private userService:UserService,private snackBar: MatSnackBar) { }
