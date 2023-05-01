@@ -1,17 +1,19 @@
-<table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Account Number</th>
-        <th>Account Type</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let recipient of recipients">
-        <td>{{ recipient.name }}</td>
-        <td>{{ recipient.accountNumber }}</td>
-        <td>{{ recipient.accountType }}</td>
-      </tr>
-    </tbody>
-  </table>
-  
+<div class="popup-container">
+  <div class="modal-container">
+    <button type="button" class="close-button" (click)="close()">X</button>
+    <table class="table" style="width: 70%;" align="center">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Account Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let recipient of recipients" (click)="onRowClick(recipient)">
+          <td>{{ recipient.holderName }}</td>
+          <td>{{ recipient.secondaryAccountNumber }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/services/user.service';
 import { AdminService } from 'src/app/services/admin.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-user-list',
@@ -15,11 +17,14 @@ export class UserListComponent implements OnInit{
   userList:any;
   searchText:string='';
  
-  constructor(private modalService: NgbModal,private userService:UserService,private adminService:AdminService) {
+  constructor(private modalService: NgbModal,private userService:UserService,private adminService:AdminService,private authService: AuthService,private router:Router) {
   }
 
   ngOnInit(): void {
       this.getUsers();
+      if (!this.authService.isAdmin() || this.authService.getUser() == 'failure') {
+        this.router.navigate(['/admin/login']);
+      }
   }
 
   popupVisible = false;

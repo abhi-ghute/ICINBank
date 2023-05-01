@@ -1,19 +1,21 @@
 <app-view-balance></app-view-balance>
-<table>
+
+<table class="table table-striped" style="width: 80%; text-align:center;" align="center">
     <thead>
+      <tr><h3 style="font-weight: bold;">Account Number: {{transactions[0].primaryAccountNumber}}</h3></tr>
       <tr>
-        <th>Date</th>
-        <th>Description</th>
         <th>Amount</th>
-        <th>Reference Number</th>
+        <th>Description</th>
+        <th>refrenceNumber</th>
+        <th>TO Account</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let transaction of transactions">
-        <td>{{ transaction.date }}</td>
+      <tr *ngFor="let transaction of transactions" [ngClass]="{'table-danger':transaction.description=='Withdraw','table-success':transaction.description=='Deposit','table-warning':transaction.description=='Transfer'}">
         <td>{{ transaction.description }}</td>
         <td>{{ transaction.amount }}</td>
-        <td>{{ transaction.referenceNumber }}</td>
+        <td>{{ transaction.refrenceNumber }}</td>
+        <td><span *ngIf=" transaction.description=='Transfer';else elseblock">{{ transaction.secondaryAccountNumber }}</span><ng-template #elseblock>-</ng-template></td>
       </tr>
     </tbody>
   </table>

@@ -59,11 +59,15 @@ export class DepositComponent implements OnInit{
   
     this.transactionService.deposit(transaction).subscribe({
       next:data=>{
-        alert("Deposited Successfully...\n ref. no.:"+referenceNumber);
-        this.getUser();
-        this.depositForm.reset();
-        this.depositForm.get('accountNumber')?.setValue(this.user.accountNumber);
-        window.location.reload();
+        if(data=='unAuthorized'){
+          alert("You cannot deposit money to the account..Deposit money for this account is blocked..please contact Bank Manager");
+        }else{
+          alert("Deposited Successfully...\n ref. no.:"+referenceNumber);
+          this.getUser();
+          this.depositForm.reset();
+          this.depositForm.get('accountNumber')?.setValue(this.user.accountNumber);
+          window.location.reload();
+        }
       },
       error:error=>{
         console.log(error);

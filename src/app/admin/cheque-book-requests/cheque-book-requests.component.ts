@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AdminService } from 'src/app/services/admin.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -8,57 +10,44 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './cheque-book-requests.component.html',
   styleUrls: ['./cheque-book-requests.component.css']
 })
-export class ChequeBookRequestsComponent implements OnInit{
-  userList:any;
-  searchText:string='';
- 
-  constructor(private modalService: NgbModal,private userService:UserService,private adminService:AdminService) {
+export class ChequeBookRequestsComponent implements OnInit {
+
+  chequeRequests: any;
+
+  constructor(private modalService: NgbModal, private userService: UserService, private adminService: AdminService, private authService: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
-      this.getUsers();
+    this.getRequests()
+    
+    console.log(this.authService.isAdmin());
+
+    if (!this.authService.isAdmin() || this.authService.getUser() == 'failure') {
+      this.router.navigate(['/admin/login']);
+    }
   }
 
-  block(user:any){
-    this.adminService.block(user).subscribe({
+  getRequests(){
+    this.adminService.chequeRequests().subscribe({
       next: data => {
-        console.log("Success");
-        this.getUsers();
+        this.chequeRequests = data;
+        console.log(this.chequeRequests);
       },
       error: error => {
         console.log('Error:', error);
       }
     });
-  }
+  } 
 
-  getUsers(){
-    this.userService.getAll("Activated").subscribe({
+  approve(id:string){
+    this.adminService.approveRequest(id).subscribe({
       next: data => {
-        this.userList=data;
-        console.log(this.userList);
-        
+        alert("Check book will be dispatched soon..");
       },
       error: error => {
         console.log('Error:', error);
       }
     });
-    return this.userList;
-  }
-
-  Searchfilter(){
-    console.log(this.searchText);
-    if(this.searchText =='' || this.searchText ==undefined || this.searchText==null){
-      this.getUsers();
-    }
-    else{
-      this.userService.getAll("Activated").subscribe({
-        next: data => {
-          this.userList = data.filter((user:any) => user.firstName.toLowerCase().includes(this.searchText.toLowerCase()) || user.lastName.toLowerCase().includes(this.searchText.toLowerCase()));   
-        },
-        error: error => {
-          console.log('Error:', error);
-        }
-      });
-    }
+    this.getRequests();
   }
 }

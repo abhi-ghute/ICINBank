@@ -12,6 +12,8 @@ import { ViewTransactionsComponent } from './user/view-transactions/view-transac
 import { WithdrawComponent } from './user/withdraw/withdraw.component';
 import { TransferFundsComponent } from './user/transfer-funds/transfer-funds.component';
 import { CheckBookRequestComponent } from './user/check-book-request/check-book-request.component';
+import { ChequeBookRequestsComponent } from './admin/cheque-book-requests/cheque-book-requests.component';
+import { RecipientsListComponent } from './user/recipients-list/recipients-list.component';
 
 const routes: Routes = [
   {path:'user',children:[
@@ -20,8 +22,9 @@ const routes: Routes = [
     {path:'deposit',component:DepositComponent},
     {path:'withdraw',component:WithdrawComponent},
     {path:'transfer',component:TransferFundsComponent},
-    {path:'checkbook',component:CheckBookRequestComponent},
+    {path:'chequebook',component:CheckBookRequestComponent},
     {path:'transactions',component:ViewTransactionsComponent},
+    {path:'recipients',component:RecipientsListComponent},
   ]},
   {path:'admin',children:[
     {path:'authorize',component:AuthorizeUserComponent},
@@ -29,6 +32,7 @@ const routes: Routes = [
     {path:'login',component:AdminLoginComponent},
     {path:'block',component:BlockUserComponent},
     {path:'unblock',component:UnblockComponent},
+    {path:'chequebook',component:ChequeBookRequestsComponent},
   ]}
 ];
 

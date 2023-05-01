@@ -23,4 +23,11 @@ export class AdminService {
     return this.http.post(this.rootUrl+"unblock",user,{responseType:'text'});
   }
 
+  chequeRequests():Observable<any>{
+    return this.http.get(this.rootUrl+"chequeRequests");
+  }
+
+  approveRequest(id:string):Observable<any>{
+    return this.http.get(this.rootUrl+"approveRequest?id="+id,{responseType:'text'});
+  }
 }

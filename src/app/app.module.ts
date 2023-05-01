@@ -30,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { UnblockComponent } from './admin/unblock/unblock.component';
+import { ProfileComponent } from './user/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { UnblockComponent } from './admin/unblock/unblock.component';
     ChequeBookRequestsComponent,
     BlockUserComponent,
     AdminLoginComponent,
-    UnblockComponent
+    UnblockComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

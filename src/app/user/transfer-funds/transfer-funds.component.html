@@ -10,14 +10,16 @@
     <input type="text" id="toAccount" formControlName="toAccount" class="form-control">
   </div>
   <div class="form-group">
+    <label for="holderName">Account Holder Name:</label>
+    <input type="text" id="holderName" formControlName="holderName" class="form-control">
+  </div>
+  <div class="form-group">
     <label for="amount">Amount:</label>
     <input type="number" id="amount" formControlName="amount" class="form-control">
   </div>
-  <button type="submit" class="btn btn-primary">Transfer Funds</button>
+  <div>
+    <button type="submit" class="btn btn-primary" [disabled]="!transferForm.valid">Transfer Funds</button>&nbsp;&nbsp;
+    <button type="button" class="btn btn-secondary" (click)="openPopup()" style=" margin-top: 10px;">Previous Recipients</button>
+  </div>
+
 </form>
-
-
-
-
-
-

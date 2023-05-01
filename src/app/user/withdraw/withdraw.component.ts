@@ -60,7 +60,9 @@ export class WithdrawComponent implements OnInit{
   
     this.transactionService.withdrawal(transaction).subscribe({
       next:data=>{
-        if(data=='lowBal'){
+        if(data=='unAuthorized'){
+          alert("You cannot withdraw money from the account..withdraw money for this account is blocked..please contact Bank Manager");
+        }else if(data=='lowBal'){
           alert("Low Balance... you can withdraw upto "+this.user.accountBalance);
         }else{
           alert("Withdraw Successfully...\n ref. no.:"+referenceNumber);

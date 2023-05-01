@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { UserService } from 'src/app/services/user.service';
 import { v4 as uuidv4 } from 'uuid';
+import { RecipientsListComponent } from '../recipients-list/recipients-list.component';
 
 @Component({
   selector: 'app-transfer-funds',
@@ -16,13 +18,14 @@ export class TransferFundsComponent implements OnInit{
   user: any;
   transferForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private userService: UserService, private snackBar: MatSnackBar, private transactionService: TransactionService) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private userService: UserService, private snackBar: MatSnackBar, private transactionService: TransactionService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.transferForm = this.fb.group({
       fromAccount: [{ value: '', disabled: true }],
       toAccount: ['', Validators.required],
-      amount: ['', Validators.required]
+      amount: ['', Validators.required],
+      holderName:['',Validators.required]
     });
 
     if (!this.authService.isUser() || this.authService.getUser() == 'failure') {
@@ -57,12 +60,15 @@ export class TransferFundsComponent implements OnInit{
       amount: this.transferForm.value.amount,
       refrenceNumber: referenceNumber,
       description: "Transfer",
-      secondaryAccountNumber: this.transferForm.value.toAccount
+      secondaryAccountNumber: this.transferForm.value.toAccount,
+      holderName:this.transferForm.value.holderName
     }
 
     this.transactionService.transfer(transaction).subscribe({
       next: data => {
-        if (data == 'lowBal') {
+        if(data=='unAuthorized'){
+          alert("You cannot transfer money from the account..transfer money for this account is blocked..please contact Bank Manager");
+        }else if (data == 'lowBal') {
           alert("Low Balance... you can withdraw upto " + this.user.accountBalance);
         }else if(data=='notFound'){
           alert("Wrong Account Number... please try again ");
@@ -77,6 +83,23 @@ export class TransferFundsComponent implements OnInit{
       error: error => {
         console.log(error);
         alert("Transaction error try again...")
+      }
+    });
+  }
+
+  openPopup(): void {
+    const dialogRef = this.dialog.open(RecipientsListComponent, {
+      width: '250px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if(result==undefined){
+   
+      }else{
+        this.transferForm.get('toAccount')?.setValue(result.secondaryAccountNumber);
+        this.transferForm.get('holderName')?.setValue(result.holderName);
       }
     });
   }

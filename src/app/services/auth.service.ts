@@ -23,8 +23,10 @@ export class AuthService {
   isAdmin():boolean{
     let role = sessionStorage.getItem("role");
     let user = sessionStorage.getItem("user");
-
+  
     if(role != '' && role != undefined && role != null  && user != '' && user != undefined && user != null){
+      if(role!='admin')
+        return false;
       return true;
     }
     return false;
@@ -34,7 +36,10 @@ export class AuthService {
     let role = sessionStorage.getItem("role");
     let user = sessionStorage.getItem("user");
 
-    if(role != '' && role != undefined && role != null  && user != '' && user != undefined && user != null){
+    if( role != '' && role != undefined && role != null && user != '' && user != undefined && user != null){
+      if(role=='admin'){
+        return false;
+      }
       return true;
     }
     return false;

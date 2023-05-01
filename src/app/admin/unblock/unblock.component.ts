@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AdminService } from 'src/app/services/admin.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,11 +14,14 @@ export class UnblockComponent implements OnInit{
   userList:any;
   searchText:string='';
  
-  constructor(private modalService: NgbModal,private userService:UserService,private adminService:AdminService) {
+  constructor(private modalService: NgbModal,private userService:UserService,private adminService:AdminService,private authService: AuthService,private router:Router) {
   }
 
   ngOnInit(): void {
       this.getUsers();
+      if (!this.authService.isAdmin() || this.authService.getUser() == 'failure') {
+        this.router.navigate(['/admin/login']);
+      }
   }
 
   Unblock(user:any){

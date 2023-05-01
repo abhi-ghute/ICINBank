@@ -14,5 +14,19 @@ export class ViewTransactionsComponent implements OnInit{
 
   constructor(private authService:AuthService,private router:Router,private transactionService:TransactionService,private snackBar: MatSnackBar) { }
   ngOnInit(): void {
+    this.transactionService.getTransactions(this.authService.getUser()).subscribe({
+      next:data=>{
+        this.transactions=data;
+        console.log(data);
+        
+      },
+      error:error=>{
+        this.snackBar.open('Error occured..Try again', 'Close', {
+          duration: 4000, 
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        });
+      }
+    });
   }
 }

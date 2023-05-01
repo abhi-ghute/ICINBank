@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-grant-access',
@@ -18,7 +20,10 @@ export class GrantAccessComponent {
     }
   };
 
-  constructor() {
+  constructor(private authService: AuthService,private router:Router) {
+    if (!this.authService.isAdmin() || this.authService.getUser() == 'failure') {
+      this.router.navigate(['/admin/login']);
+    }
   }
 
   close() {
