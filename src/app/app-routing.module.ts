@@ -14,6 +14,8 @@ import { TransferFundsComponent } from './user/transfer-funds/transfer-funds.com
 import { CheckBookRequestComponent } from './user/check-book-request/check-book-request.component';
 import { ChequeBookRequestsComponent } from './admin/cheque-book-requests/cheque-book-requests.component';
 import { RecipientsListComponent } from './user/recipients-list/recipients-list.component';
+import { ProfileComponent } from './user/profile/profile.component';
+import { AccounrDetailsComponent } from './user/accounr-details/accounr-details.component';
 
 const routes: Routes = [
   {path:'user',children:[
@@ -25,6 +27,8 @@ const routes: Routes = [
     {path:'chequebook',component:CheckBookRequestComponent},
     {path:'transactions',component:ViewTransactionsComponent},
     {path:'recipients',component:RecipientsListComponent},
+    {path:'profile',component:ProfileComponent},
+    {path:'accountDetails',component:AccounrDetailsComponent},
   ]},
   {path:'admin',children:[
     {path:'authorize',component:AuthorizeUserComponent},

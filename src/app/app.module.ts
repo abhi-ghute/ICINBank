@@ -31,6 +31,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { UnblockComponent } from './admin/unblock/unblock.component';
 import { ProfileComponent } from './user/profile/profile.component';
+import { AccounrDetailsComponent } from './user/accounr-details/accounr-details.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ProfileComponent } from './user/profile/profile.component';
     BlockUserComponent,
     AdminLoginComponent,
     UnblockComponent,
-    ProfileComponent
+    ProfileComponent,
+    AccounrDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +69,7 @@ import { ProfileComponent } from './user/profile/profile.component';
     MatButtonModule,
     MatDialogModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

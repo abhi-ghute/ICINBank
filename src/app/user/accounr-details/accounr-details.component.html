@@ -1,0 +1,40 @@
+<div class="container">
+    <h2>Profile Information</h2>
+    <table class="table table-bordered table-striped">
+        <tbody>
+            <tr>
+                <td>Account Number:</td>
+                <td>{{ user.accountNumber }}</td>
+            </tr>
+            <tr>
+                <td>Account Type:</td>
+                <td>{{ user.accountType }}</td>
+            </tr>
+            <tr>
+                <td>Account Balance:</td>
+                <td>{{ user.accountBalance }}</td>
+            </tr>
+            <tr>
+                <td>IFSC:</td>
+                <td>{{ user.ifcs }}</td>
+            </tr>
+            <tr>
+                <td>Actions:</td>
+                <td>
+                    <ul>
+                        <li>Deposit: <span
+                                *ngIf="user.actionEntity.deposit; else depositElse">Available</span><ng-template
+                                #depositElse>Unavailable</ng-template></li>
+                        <li>Withdrawal: <span
+                                *ngIf="user.actionEntity.withdrawal; else withdrawalElse">Available</span><ng-template
+                                #withdrawalElse>Unavailable</ng-template></li>
+                        <li>Transfer: <span
+                                *ngIf="user.actionEntity.transfer; else transferElse">Available</span><ng-template
+                                #transferElse>Unavailable</ng-template></li>
+                    </ul>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-accounr-details',
+  templateUrl: './accounr-details.component.html',
+  styleUrls: ['./accounr-details.component.css']
 })
-export class ProfileComponent implements OnInit{
-
+export class AccounrDetailsComponent {
   user:any;
 
   constructor(private authService:AuthService,private userService:UserService,private snackBar: MatSnackBar){}
@@ -28,5 +27,4 @@ export class ProfileComponent implements OnInit{
       }
     });
   }
-
 }
