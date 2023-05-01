@@ -32,6 +32,7 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { UnblockComponent } from './admin/unblock/unblock.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { AccounrDetailsComponent } from './user/accounr-details/accounr-details.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { AccounrDetailsComponent } from './user/accounr-details/accounr-details.
     AdminLoginComponent,
     UnblockComponent,
     ProfileComponent,
-    AccounrDetailsComponent
+    AccounrDetailsComponent,
+    AboutusComponent
   ],
   imports: [
     BrowserModule,

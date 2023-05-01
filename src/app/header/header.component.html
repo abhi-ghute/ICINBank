@@ -1,49 +1,79 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">
-        <img src="assets/img/bankLogo.png" alt="ICINBank" width="50" height="50" class="d-inline-block align-top">
-        <span class="ml-2"> ICIN Bank</span>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li *ngIf="isLoggedIn && isUser" class="nav-item">
-            <a class="nav-link" routerLink="/user/accounts">Accounts</a>
-          </li>
-          <li *ngIf="isLoggedIn && isAdmin" class="nav-item">
-            <a class="nav-link" routerLink="/admin/dashboard">Dashboard</a>
-          </li>
-          <li *ngIf="!isLoggedIn" class="nav-item">
-            <a class="nav-link" routerLink="/">Home</a>
-          </li>
-          <li *ngIf="!isLoggedIn" class="nav-item">
-            <a class="nav-link" routerLink="/admin/login">Admin Login</a>
-          </li>
-          <li *ngIf="!isLoggedIn" class="nav-item">
-            <a class="nav-link" routerLink="/user/login">User Login</a>
-          </li>
-          <li *ngIf="!isLoggedIn" class="nav-item">
-            <a class="nav-link" routerLink="/user/register">Sign up</a>
-          </li>
-          <li *ngIf="!isLoggedIn" class="nav-item">
-            <a class="nav-link" routerLink="/admin/users">Sign up</a>
-          </li>
-          <li *ngIf="!isLoggedIn" class="nav-item">
-            <a class="nav-link" routerLink="/admin/block">Block</a>
-          </li>
-          <li *ngIf="!isLoggedIn" class="nav-item">
-            <a class="nav-link" routerLink="/admin/unblock">UnBlock</a>
-          </li>
-          <li *ngIf="!isLoggedIn" class="nav-item">
-            <a class="nav-link" routerLink="/admin/authorize">authorize</a>
-          </li>
-          <li *ngIf="isLoggedIn" class="nav-item">
-            <a class="nav-link" (click)="logout()">Logout</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+      <img src="assets/img/bankLogo.png" alt="ICINBank" width="50" height="50" class="d-inline-block align-top">
+      <span class="ml-2"> ICIN Bank</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li *ngIf="!isLoggedIn" class="nav-item">
+          <a class="nav-link" routerLink="/user/register">Register</a>
+        </li>
+        <li *ngIf="!isLoggedIn" class="nav-item">
+          <a class="nav-link" routerLink="/user/login">User Login</a>
+        </li>
+        <li *ngIf="!isLoggedIn" class="nav-item">
+          <a class="nav-link" routerLink="/admin/login">Admin Login</a>
+        </li>
+        <li *ngIf="!isLoggedIn" class="nav-item">
+          <a class="nav-link" routerLink="/aboutUs">AboutUs</a>
+        </li>
+
+        <li *ngIf="isLoggedIn && isUser" class="nav-item">
+          <a class="nav-link" routerLink="/user/transactions">Transactions</a>
+        </li> 
+        <li class="nav-item dropdown" *ngIf="isLoggedIn && isUser" >
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Money
+          </a>
+          <ul class="dropdown-menu">
+            <li *ngIf="isLoggedIn && isUser" class="nav-item">
+              <a class="dropdown-item" routerLink="/user/deposit">Deposit</a>
+            </li> 
+            <li><hr class="dropdown-divider"></li>
+            <li *ngIf="isLoggedIn && isUser" class="nav-item">
+              <a class="dropdown-item" routerLink="/user/withdraw">withdraw</a>
+            </li> 
+            <li><hr class="dropdown-divider"></li>
+            <li *ngIf="isLoggedIn && isUser" class="nav-item">
+              <a class="dropdown-item" routerLink="/user/transfer">transfer</a>
+            </li> 
+          </ul>
+        </li>
+      
+        <li *ngIf="isLoggedIn && isUser" class="nav-item">
+          <a class="nav-link" routerLink="/user/chequebook">cheque Request</a>
+        </li> 
+        <li *ngIf="isLoggedIn && isUser" class="nav-item">
+          <a class="nav-link" routerLink="/user/profile">profile</a>
+        </li> 
+        <li *ngIf="isLoggedIn && isUser" class="nav-item">
+          <a class="nav-link" routerLink="/user/accountDetails">accountDetails</a>
+        </li> 
+
+        <li *ngIf="isLoggedIn && isAdmin" class="nav-item">
+          <a class="nav-link" routerLink="/admin/authorize">authorize</a>
+        </li> 
+        <li *ngIf="isLoggedIn && isAdmin" class="nav-item">
+          <a class="nav-link" routerLink="/admin/users">Permissions</a>
+        </li> 
+        <li *ngIf="isLoggedIn && isAdmin" class="nav-item">
+          <a class="nav-link" routerLink="/admin/block">block</a>
+        </li> 
+        <li *ngIf="isLoggedIn && isAdmin" class="nav-item">
+          <a class="nav-link" routerLink="/admin/unblock">unblock</a>
+        </li> 
+        <li *ngIf="isLoggedIn && isAdmin" class="nav-item">
+          <a class="nav-link" routerLink="/admin/chequebook">Check Requests</a>
+        </li> 
+
+        <li *ngIf="isLoggedIn" class="nav-item">
+          <a class="nav-link" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

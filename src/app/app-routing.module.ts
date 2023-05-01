@@ -16,8 +16,11 @@ import { ChequeBookRequestsComponent } from './admin/cheque-book-requests/cheque
 import { RecipientsListComponent } from './user/recipients-list/recipients-list.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { AccounrDetailsComponent } from './user/accounr-details/accounr-details.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 const routes: Routes = [
+  {path:'',component:UserLoginComponent},
+  {path:'aboutUs',component:AboutusComponent},
   {path:'user',children:[
     {path:'register',component:RegistationComponent},
     {path:'login',component:UserLoginComponent},

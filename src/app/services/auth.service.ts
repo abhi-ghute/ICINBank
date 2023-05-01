@@ -61,4 +61,7 @@ export class AuthService {
     return "login";
   }
 
+  isLoggedIn(){
+    return this.isUser() || this.isAdmin();
+  }
 }
